@@ -7,17 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projet.app.models.Rue;
+import com.projet.app.models.Zone;
 import com.projet.app.repository.RueRepository;
+import com.projet.app.repository.ZoneRepository;
 
 @Service
 public class RueService {
 	
 	@Autowired
 	private RueRepository rRep;
+	@Autowired
+	private ZoneRepository zr;
 	
-	public Rue create(Rue rue) {
+	public Rue create(Long zoneId,Rue rue) {
+		Optional<Zone>zoneOptional=zr.findById(zoneId);
+		if (zoneOptional.isPresent()) {
+			Zone zone=zoneOptional.get();
+			rue.setZone(zone);
+			return rRep.save(rue);
+		}else {
+			return null;
+		}
 		
-		return rRep.save(rue);
 	}
 	
 	public List<Rue> read(){

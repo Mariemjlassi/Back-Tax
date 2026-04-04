@@ -18,6 +18,7 @@ public class ArrondissementService {
 	public Arrondissement create(Arrondissement arrondissement) {
 		
 		return ar.save(arrondissement);
+		
 	}
 	
 	public List<Arrondissement> read(){
@@ -36,13 +37,13 @@ public class ArrondissementService {
 	
 	public void deleteArrondissement(final Long id) {
 		ar.deleteById(id);
+		
 	}
 	
 	public Arrondissement update(Long id, Arrondissement arrondissement) {
 		Optional<Arrondissement> arr = ar.findById(id);
 		if(arr.isPresent()) {
 			Arrondissement existingArrondissement = arr.get();
-			existingArrondissement.setAdresse(arrondissement.getAdresse());
 			existingArrondissement.setNom(arrondissement.getNom());
 			return ar.save(existingArrondissement);
 			

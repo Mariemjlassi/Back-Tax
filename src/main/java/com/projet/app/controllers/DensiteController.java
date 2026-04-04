@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projet.app.models.Densité;
+import com.projet.app.models.Densite;
 import com.projet.app.services.DensiteService;
 
 @RestController
@@ -20,11 +20,11 @@ public class DensiteController {
 	private DensiteService ds;
 	
 	@PostMapping
-	public Densité addDensite(@RequestBody Densité densité) {
+	public Densite addDensite(@RequestBody Densite densité) {
 		return ds.create(densité);
 	}
 	@GetMapping
-	public List<Densité> getAll(){
+	public List<Densite> getAll(){
 		return ds.read();
 	}
 

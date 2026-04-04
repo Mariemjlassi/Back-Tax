@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.projet.app.models.Terrain;
 
+
+
 @Repository
 public interface TerrainRepository extends JpaRepository<Terrain, Long>{
-
+	Terrain findByAdresse(String adresse);
 }

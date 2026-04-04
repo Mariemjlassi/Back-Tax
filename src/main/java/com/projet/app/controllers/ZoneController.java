@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.projet.app.dto.ZoneRequest;
 import com.projet.app.models.Zone;
 import com.projet.app.services.ZoneService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,10 +28,10 @@ public class ZoneController {
 	@Autowired
 	private ZoneService zs;
 	
-	@PostMapping
-	public Zone addZone(@RequestBody Zone zone) {
-		return zs.create(zone);
-	}
+	@PostMapping("/{arr_id}")
+    public Zone addZone(@PathVariable Long arr_id,@RequestBody Zone zone) {
+        return zs.create(arr_id, zone);
+    }
 	
 	@GetMapping
 	public List<Zone> getAllZone(){

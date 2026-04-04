@@ -31,7 +31,7 @@ public class TaxeController {
 	@PostMapping("/enregistrerProprietaireEtTerrain")
     public ResponseEntity<String> enregistrerProprietaireEtTerrain(@RequestBody ProprietaireEtTerrainDTO dto) {
         
-        Proprietaire proprietaire = new Proprietaire(dto.getNom(), dto.getPrenom(), dto.getCin(), dto.getAdresse(),dto.getEmail());
+        Proprietaire proprietaire = new Proprietaire(dto.getNom(), dto.getPrenom(), dto.getCin(), dto.getAdresse(),dto.getEmail(),dto.getTel());
         Terrain terrain = new Terrain(dto.getSurface(), dto.getAdresse());
         
         

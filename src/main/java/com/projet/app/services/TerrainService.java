@@ -16,9 +16,18 @@ public class TerrainService {
 	@Autowired
 	private TerrainRepository tr;
 	
-public Terrain create(Terrain terrain) {
+public Terrain create(Terrain terrain){
+		Terrain exisTerrain=tr.findByAdresse(terrain.getAdresse());
+		if(exisTerrain!=null) {
+			exisTerrain.setAdresse(terrain.getAdresse());
+			exisTerrain.setSurface(terrain.getSurface());
+			exisTerrain.setProprietaire(terrain.getProprietaire());
+			exisTerrain.setRue(terrain.getRue());
+			return tr.save(exisTerrain);
+		}else {
+			return tr.save(terrain);
+		}
 		
-		return tr.save(terrain);
 	}
 	
 	public List<Terrain> read(){

@@ -25,9 +25,9 @@ public class DBUserServiceImpl implements UserDetailsService{
 	
 	 @Override
 	    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-	        // Write logic to fetch user from DB
+	       
 	        DBUser user = dbUserRepository.findByEmail(email)
-	                .orElseThrow(() -> new UsernameNotFoundException("Customer not found with email: " + email));
+	                .orElseThrow(() -> new UsernameNotFoundException("Agent non trouveé avec l'eamil: " + email));
 
 	        return new User(user.getEmail(), user.getPassword(), Collections.emptyList());
 	    }

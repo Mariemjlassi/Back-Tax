@@ -24,14 +24,14 @@ public class AuthServiceImpl implements AuthService{
 
 	@Override
     public DBUser createUser(SignUpRequest signupRequest) {
-        //Check if customer already exist
+        
         if (dbUserRepository.existsByEmail(signupRequest.getEmail())) {
             return null;
         }
         DBUser user = new DBUser();
         BeanUtils.copyProperties(signupRequest,user);
 
-        //Hash the password before saving
+        
         String hashPassword = passwordEncoder.encode(signupRequest.getPassword());
         user.setPassword(hashPassword);
         DBUser createdUser = dbUserRepository.save(user);

@@ -25,13 +25,15 @@ public class Proprietaire {
 	private String cin;
 	private String adresse;
 	private String email;
+	private String tel;
 	
-	public Proprietaire(String nom,String prenom,String cin,String adresse,String email) {
+	public Proprietaire(String nom,String prenom,String cin,String adresse,String email, String tel) {
 		super();
 		this.nom=nom;
 		this.prenom=prenom;
 		this.cin=cin;
 		this.adresse=adresse;
 		this.email=email;
+		this.tel=tel;
 	}
 }

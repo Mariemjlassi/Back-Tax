@@ -52,4 +52,6 @@ public class ProprietaireController {
 		if(p == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		return ResponseEntity.ok(p);
 	}
+	
+	 
 }

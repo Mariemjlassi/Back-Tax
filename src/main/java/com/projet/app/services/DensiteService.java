@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.projet.app.models.Densité;
+import com.projet.app.models.Densite;
 import com.projet.app.repository.DensiteRepository;
 
 @Service
@@ -14,15 +14,15 @@ public class DensiteService {
 	@Autowired
 	private DensiteRepository dr;
 	
-	public Densité create(Densité densité) {
-		return dr.save(densité);
+	public Densite create(Densite densite) {
+		return dr.save(densite);
 	}
 	
-	public List<Densité> read(){
+	public List<Densite> read(){
 		return dr.findAll();
 	}
 	
-	public Densité findById(Long id) {
+	public Densite findById(Long id) {
 		return dr.findById(id).orElse(null);
 	}
 

@@ -28,9 +28,9 @@ public class RueController {
 	@Autowired
 	private RueService rs;
 	
-	@PostMapping
-	public Rue addRue(@RequestBody Rue rue) {
-		return rs.create(rue);
+	@PostMapping("/{zone_id}")
+	public Rue addRue(@PathVariable Long zone_id,@RequestBody Rue rue) {
+		return rs.create(zone_id,rue);
 	}
 	
 	@GetMapping

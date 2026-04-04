@@ -16,7 +16,19 @@ public class ProprietaireService {
 		private ProprietaireRepository pr;
 		
 		public Proprietaire create(Proprietaire proprietaire) {
-			return pr.save(proprietaire);
+			Proprietaire existingProprietaire=pr.findByCin(proprietaire.getCin());
+			if(existingProprietaire!=null) {
+				existingProprietaire.setAdresse(proprietaire.getAdresse());
+	            existingProprietaire.setCin(proprietaire.getCin());
+	            existingProprietaire.setNom(proprietaire.getNom());
+	            existingProprietaire.setPrenom(proprietaire.getPrenom());
+	            existingProprietaire.setEmail(proprietaire.getEmail());
+	            existingProprietaire.setTel(proprietaire.getTel());
+	            return pr.save(existingProprietaire);
+			}else {
+				return pr.save(proprietaire);
+				}
+			
 		}
 		
 		public List<Proprietaire> read(){
@@ -45,9 +57,12 @@ public class ProprietaireService {
 				existingProprietaire.setNom(proprietaire.getNom());
 				existingProprietaire.setPrenom(proprietaire.getPrenom());
 				existingProprietaire.setEmail(proprietaire.getEmail());
+				existingProprietaire.setTel(proprietaire.getTel());
 				return pr.save(existingProprietaire);
 				
 		}
 			return null;
 		}
+		
+		
 }

@@ -1,3 +1,4 @@
+
 package com.projet.app.configuration;
 
 
@@ -31,29 +32,21 @@ public class SecurityConfig {
 		this.jwtRequestFilter = jwtRequestFilter;
 	}
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
-        return security.csrf(csrf->csrf.disable())
-                .authorizeHttpRequests()
-                .requestMatchers("/sendmail").authenticated()
-                .requestMatchers("/arrondissements/**").authenticated()
-                .requestMatchers("/zones/**").authenticated()
-                .requestMatchers("/rues/**").authenticated()
-                .requestMatchers("/proprietaire/**").authenticated()
-                .requestMatchers("/terrainnb/**").authenticated()
-                .requestMatchers("/signup", "/login").permitAll()
-                .requestMatchers("/densite/**").authenticated()
-                .requestMatchers("/terrain/**", "/taxe/calcul").authenticated()
-                .and()
-                .authorizeHttpRequests()
-                .anyRequest().authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
+	    return security
+	        .csrf(csrf -> csrf.disable())
+	        .authorizeHttpRequests(auth -> auth
+	            .requestMatchers("/sendmail").permitAll()
+	            .requestMatchers("/signup", "/login").permitAll()
+	            .anyRequest().authenticated()
+	        )
+	        .sessionManagement(session -> 
+	            session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+	        )
+	        .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+	        .build();
+	}
 
     
 

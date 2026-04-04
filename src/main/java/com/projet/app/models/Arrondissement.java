@@ -20,6 +20,6 @@ public class Arrondissement {
 	
 	private Long id;
 	private String nom;
-	private String adresse;
+	
 	
 }
