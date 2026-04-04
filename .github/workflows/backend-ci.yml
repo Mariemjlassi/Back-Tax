@@ -28,3 +28,13 @@ jobs:
     - name: 4. Message final
       if: success()
       run: echo "Le code de Mariem est valide et prêt pour le déploiement !"
+      
+      # ... étapes précédentes ...
+
+    #- name: 3. Donner les droits et Lancer les tests
+      # On ajoute "chmod +x mvnw" avant la commande de test
+     # run: |
+       # chmod +x mvnw
+        # ./mvnw clean test
+        
+  
