@@ -22,19 +22,15 @@ jobs:
         cache: maven
 
     - name: 3. Lancer les tests (CI)
-      # C'est ici que GitHub va executer ton ProprietaireServiceTest
       run: ./mvnw clean test
+      env:
+        SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
+        SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+        SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+        MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
     - name: 4. Message final
       if: success()
-      run: echo "Le code de Mariem est valide et prêt pour le déploiement !"
-      
-      # ... étapes précédentes ...
-
-    #- name: 3. Donner les droits et Lancer les tests
-      # On ajoute "chmod +x mvnw" avant la commande de test
-     # run: |
-       # chmod +x mvnw
-        # ./mvnw clean test
-        
-  
+      run: echo "Tests passés, build valide."
